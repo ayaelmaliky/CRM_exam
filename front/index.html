@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Front-Back</title>
+</head>
+<body>
+    <h1>Mon CRM</h1>
+
+    <button onclick="testerConnexion()">
+        Tester la connexion
+    </button>
+
+    <p id="message">En attente...</p>
+
+    <script>
+        async function testerConnexion() {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/api/test"
+                );
+
+                const data = await response.json();
+
+                document.getElementById("message").textContent =
+                    data.message;
+            } catch (error) {
+                document.getElementById("message").textContent =
+                    "Erreur de connexion au serveur";
+            }
+        }
+    </script>
+</body>
+</html>
